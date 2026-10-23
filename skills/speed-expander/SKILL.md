@@ -15,4 +15,6 @@ Rewrite the user's supplied task to minimize wall-clock time to a verified outco
 
 Respect real resource limits, access, order dependencies, and approval boundaries. Never trade essential quality for apparent speed.
 
-**Output:** One standalone accelerated execution prompt with completion criteria. No task execution.
+**Director mode:** If invoked with `Director: ambition-expander`, return up to three task-specific upgrades plus critical prerequisites/risks. No full prompt. Never execute.
+
+**Standalone output:** One standalone accelerated execution prompt with completion criteria. Do not execute.

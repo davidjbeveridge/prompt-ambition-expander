@@ -15,4 +15,6 @@ Rewrite the user's supplied task for expert-grade quality, not greater length or
 
 Preserve objective, scope, constraints. Flag inaccessible evidence and distinguish hypotheses from verified facts.
 
-**Output:** One standalone, rigorous, executable prompt. No task execution.
+**Director mode:** If invoked with `Director: ambition-expander`, return up to three task-specific upgrades plus critical prerequisites/risks. No full prompt. Never execute.
+
+**Standalone output:** One standalone, rigorous, executable prompt. Do not execute.

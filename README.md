@@ -1,51 +1,47 @@
 # Prompt Ambition Expander
 
-Five concise, installable [Agent Skills](https://agentskills.io/) for rewriting ordinary tasks into more ambitious, executable prompts. They **expand prompts; they do not execute the task**.
+Five installable [Agent Skills](https://agentskills.io/). `ambition-expander` is a **director**: it selects and invokes the relevant specialist skills, synthesizes one prompt, and optionally **executes** the expanded task.
 
 | Skill | Purpose |
 | --- | --- |
-| `ambition-expander` | Combine the highest-leverage improvements from all four dimensions. |
-| `altitude-expander` | Aim at the underlying outcome instead of the assumed deliverable. |
-| `depth-expander` | Demand expert methods, primary evidence, and independent verification. |
-| `range-expander` | Apply useful methods from unexpected disciplines. |
-| `speed-expander` | Reduce elapsed time by redesigning execution, not lowering quality. |
+| `ambition-expander` | Route to specialists, merge improvements, optionally execute. |
+| `altitude-expander` | Target the underlying outcome, not just a deliverable. |
+| `depth-expander` | Expert methods, primary evidence, independent verification. |
+| `range-expander` | Transfer methods from unexpected disciplines. |
+| `speed-expander` | Cut elapsed time through automation, parallelism, and early tests. |
 
 ## Install
 
-Install interactively and choose skills/agents:
+Install **all five skills** so the director can delegate:
 
 ```sh
 npx skills add davidjbeveridge/prompt-ambition-expander
 ```
 
-Install the combined skill only:
+Select all five when the installer asks which skills to install. A director-only installation cannot invoke missing specialists. Individual skills also work standalone.
 
-```sh
-npx skills add davidjbeveridge/prompt-ambition-expander --skill ambition-expander
-```
+## Usage
 
-List available skills without installing:
+**Expand only (default):**
 
-```sh
-npx skills add davidjbeveridge/prompt-ambition-expander --list
-```
+> Use ambition-expander to expand: "Build a dashboard showing monthly customer churn."
 
-## Use
+**Expand and execute (opt in):**
 
-Ask your skill-aware agent, for example:
+> Use ambition-expander to expand **and execute**: "Research the churn drivers, build the dashboard, and verify the metrics."
 
-> Use the ambition-expander to rewrite: "Build a dashboard for monthly customer churn."
+**Override routing:**
 
-Or choose a dimension:
+> Use ambition-expander with **depth** and **speed** only, then execute: "Fix our flaky CI tests."
 
-> Use depth-expander to rewrite this task with expert-grade methods: "Investigate why users churn."
+The director scores each dimension against the task, invokes the relevant installed skill(s), and merges their recommendations. It normally calls 1–3 specialists; a broad task may warrant all four. The specialists return concise upgrades in director mode and never execute the user's task themselves.
 
-Each skill produces a standalone, copy-ready prompt. It preserves the user's intent, explicit constraints, and authorization boundaries. It must not invent available tools, data, permissions, or verified conclusions. Expansion is **not** synonymous with adding scope or length.
+Default mode outputs a copy-ready prompt. Execute mode **expands internally and carries out the task using available tools**, then reports what was verified and what remains blocked. It does not claim work was completed merely because a plan was produced.
 
-The combined skill adds a short reframing and up to five key upgrades; individual skills output only the expanded prompt.
+**Host compatibility:** Skill-to-skill invocation differs across agents. The director uses native skill/subagent calls when available. Otherwise it reads the selected specialist's actual `SKILL.md` and applies it in a separate pass. It must disclose missing skills or unsupported invocation rather than pretending delegation succeeded. Execute mode still obeys tool access, permissions, safety requirements, and user-defined constraints. Reframing a goal never grants new authority.
 
 ## Sources and attribution
 
-**Original framework:** Felix Rieseberg, **["How to be more ambitious: A tutorial for humans with models"](https://felixrieseberg.com/how-to-be-more-ambitious-a-tutorial-for-humans-with-models/)** (October 13, 2026). The article introduces the four dimensions—**Speed, Altitude, Depth, Range**—and publishes an example **Depth** expansion prompt. These skills are independent, condensed adaptations of the ideas, **not** verbatim reproductions of that prompt. Rieseberg intentionally does not develop Speed; this repository's Speed skill is an extrapolation.
+**Original framework:** Felix Rieseberg, **["How to be more ambitious: A tutorial for humans with models"](https://felixrieseberg.com/how-to-be-more-ambitious-a-tutorial-for-humans-with-models/)**. The article describes **Speed, Altitude, Depth, Range** and supplies a free **Depth** expansion prompt. These skills are condensed independent adaptations, not verbatim reproductions. The Speed skill expands on an idea Rieseberg leaves unexplored.
 
-**Compression inspiration:** Julius Brussee, [Caveman](https://github.com/JuliusBrussee/caveman). The concise wording follows Caveman-style principles; the prompts were manually written, not generated or validated by Caveman's CLI. No affiliation or endorsement is implied.
+**Compression inspiration:** Julius Brussee, [Caveman](https://github.com/JuliusBrussee/caveman). The wording follows Caveman-style concision; these skills were manually written, not produced or benchmarked by Caveman's CLI. No affiliation or endorsement implied.
